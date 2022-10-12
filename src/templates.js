@@ -61,4 +61,22 @@ function Login() {
     `;
 }
 
-module.exports = { Layout, Home, Login, signUpForm };
+
+function AllPets(petsList) {
+  const pets = petsList.map(
+    (pet) => `
+    <li>
+    <h2>${pet.pet_name}</h2>
+    <img src="${pet.image_path}" alt="${pet.pet_type}" />
+    </li>`
+  );
+  console.log(pets, petsList);
+  return /*html */ `
+    <h1>All Pets</h1>
+    <ul>
+        ${pets.join("")}
+    </ul>
+    `;
+}
+
+module.exports = { Layout, Home, Login, signUpForm, AllPets };
