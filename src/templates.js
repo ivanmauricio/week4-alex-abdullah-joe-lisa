@@ -34,7 +34,7 @@ function signUpForm() {
     <h1>Create an account</h1>
 <form method="POST">
 <label for="name">Name</label>
-<input type="name" id="name" name="name">
+<input id="name" name="name">
 <label for="email">Email</label>
 <input type="email" id="email" name="email">
 <label for="password">Password</label>
@@ -61,7 +61,6 @@ function Login() {
     `;
 }
 
-
 function AllPets(petsList) {
   const pets = petsList.map(
     (pet) => `
@@ -79,4 +78,23 @@ function AllPets(petsList) {
     `;
 }
 
-module.exports = { Layout, Home, Login, signUpForm, AllPets };
+function MyPets() {
+  return /*html */ `
+    <h1>Submit a post about your pet</h1>
+    <form method="POST">
+        <label for="petName">Pet Name<span aria-hidden="true">*</span></label>
+        <input id="petName" name="petName">
+        <label for="petType">Tell us about your pet<span aria-hidden="true">*</span></label>
+        <input id="petType" name="petType">
+        <label for="petImg">Pet Image<span aria-hidden="true">*</span></label>
+        <input id="petImg" name="petImg" type="file">
+        <label for="sharing">Do you want to share with other users?  
+          <span aria-hidden="true">*</span>
+          <input id="sharing" name="sharing" type="checkbox">
+        </label>
+        <button>Submit</button>
+    </form>
+    `;
+}
+
+module.exports = { Layout, Home, Login, signUpForm, AllPets, MyPets };
