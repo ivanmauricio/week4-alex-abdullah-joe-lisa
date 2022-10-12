@@ -29,9 +29,8 @@ function Home() {
     `;
 }
 
-
 function signUpForm() {
-    return /*html*/ `
+  return /*html*/ `
     <h1>Create an account</h1>
 <form method="POST">
 <label for="name">Name</label>
@@ -42,10 +41,8 @@ function signUpForm() {
 <input type="password" id="pw" name="pw">
 <button>Sign up</button>
 </form>
-    `  
+    `;
 }
-
-
 
 function Login() {
   return /* html */ `
@@ -64,5 +61,21 @@ function Login() {
     `;
 }
 
-module.exports = { Layout, Home, Login, signUpForm };
+function AllPets(petsList) {
+  const pets = petsList.map(
+    (pet) => `
+    <li>
+    <h2>${pet.pet_name}</h2>
+    <img src="${pet.image_path}" alt="${pet.pet_type}" />
+    </li>`
+  );
+  console.log(pets, petsList);
+  return /*html */ `
+    <h1>All Pets</h1>
+    <ul>
+        ${pets.join("")}
+    </ul>
+    `;
+}
 
+module.exports = { Layout, Home, Login, signUpForm, AllPets };
