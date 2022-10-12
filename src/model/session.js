@@ -7,9 +7,9 @@ INSERT INTO sessions(id, user_id, expires_at)
 VALUES ($sid, $user_id, DATE('now' + '7 days'))
 `);
 
-function createSession(userId) {
+function createSession(user_id) {
   const sid = crypto.randomBytes(18).toString("base64");
-  insertSession.run({ sid, userId });
+  insertSession.run({ sid, user_id });
   return sid;
 }
 

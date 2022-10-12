@@ -11,11 +11,11 @@ function createUser(name, email, hash) {
 }
 
 const selectUserByEmail = db.prepare(/*sql*/ `
-SELECT email, hash FROM users WHERE email = ?
+SELECT id, email, hash FROM users WHERE email = ?
 `);
 
 function getUserByEmail(email) {
-  return selectUserByEmail.get({ email });
+  return selectUserByEmail.get(email);
 }
 
 module.exports = { createUser, getUserByEmail };
