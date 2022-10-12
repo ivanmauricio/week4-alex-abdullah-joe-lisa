@@ -29,4 +29,20 @@ function Home() {
     `;
 }
 
-module.exports = { Layout, Home };
+function signUpForm() {
+    return /*html*/ `
+    <h1>Create an account</h1>
+<form method="POST">
+<label for="name">Name</label>
+<input type="name" id="name" name="name">
+<label for="email">Email</label>
+<input type="email" id="email" name="email">
+<label for="pw">Password</label>
+<input type="password" id="pw" name="pw">
+<button>Sign up</button>
+</form>
+    `  
+}
+
+module.exports = { signUpForm, Layout, Home };
+
