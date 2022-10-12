@@ -61,7 +61,7 @@ function Login() {
     `;
 }
 
-function AllPets(petsList) {
+function AllPets(petsList, id) {
   const pets = petsList.map(
     (pet) => `
     <li>
@@ -71,6 +71,7 @@ function AllPets(petsList) {
   );
   console.log(pets, petsList);
   return /*html */ `
+    ${Navigation(id)}
     <h1>All Pets</h1>
     <ul>
         ${pets.join("")}
@@ -78,8 +79,24 @@ function AllPets(petsList) {
     `;
 }
 
-function MyPets() {
+function Navigation(id) {
   return /*html */ `
+    <header>
+        <nav> 
+            <div>Petsagram</div> 
+            <ul>
+                <li><a href="/all-pets">All Pets</a></li>
+                <li><a href="/my-pets/${id}">My Pets</a></li>
+                <li><form method="POST" action="/log-out"><button>Log Out</button></form></li>
+            </ul>
+        </nav>
+    </header>
+    `;
+}
+
+function MyPets(id) {
+  return /*html */ `
+    ${Navigation(id)}
     <h1>Submit a post about your pet</h1>
     <form method="POST">
         <label for="petName">Pet Name<span aria-hidden="true">*</span></label>
