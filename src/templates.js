@@ -37,8 +37,8 @@ function signUpForm() {
 <input type="name" id="name" name="name">
 <label for="email">Email</label>
 <input type="email" id="email" name="email">
-<label for="pw">Password</label>
-<input type="password" id="pw" name="pw">
+<label for="password">Password</label>
+<input type="password" id="password" name="password">
 <button>Sign up</button>
 </form>
     `;
@@ -60,6 +60,7 @@ function Login() {
 
     `;
 }
+
 
 function AllPets(petsList) {
   const pets = petsList.map(

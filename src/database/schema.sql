@@ -26,4 +26,5 @@ CREATE TABLE IF NOT EXISTS pets (
     private INTEGER DEFAULT 0 CHECK(private IN (0, 1))
 );
 
+
 COMMIT;
