@@ -34,7 +34,7 @@ function signUpForm(title) {
     <h1>${title}</h1>
 <form method="POST">
 <label for="name">Name</label>
-<input type="name" id="name" name="name">
+<input id="name" name="name">
 <label for="email">Email</label>
 <input type="email" id="email" name="email">
 <label for="password">Password</label>
@@ -61,7 +61,9 @@ function Login() {
     `;
 }
 
-function AllPets(petsList) {
+
+function AllPets(petsList, id) {
+
   const pets = petsList.map(
     (pet) => `
     <li>
@@ -71,10 +73,47 @@ function AllPets(petsList) {
   );
   console.log(pets, petsList);
   return /*html */ `
+    ${Navigation(id)}
     <h1>All Pets</h1>
     <ul>
         ${pets.join("")}
     </ul>
+    `;
+}
+
+
+function Navigation(id) {
+  return /*html */ `
+    <header>
+        <nav> 
+            <div>Petsagram</div> 
+            <ul>
+                <li><a href="/all-pets">All Pets</a></li>
+                <li><a href="/my-pets/${id}">My Pets</a></li>
+                <li><form method="POST" action="/log-out"><button>Log Out</button></form></li>
+            </ul>
+        </nav>
+    </header>
+    `;
+}
+
+function MyPets(id) {
+  return /*html */ `
+    ${Navigation(id)}
+    <h1>Submit a post about your pet</h1>
+    <form method="POST">
+        <label for="petName">Pet Name<span aria-hidden="true">*</span></label>
+        <input id="petName" name="petName">
+        <label for="petType">Tell us about your pet<span aria-hidden="true">*</span></label>
+        <input id="petType" name="petType">
+        <label for="petImg">Pet Image<span aria-hidden="true">*</span></label>
+        <input id="petImg" name="petImg" type="file">
+        <label for="sharing">Do you want to share with other users?  
+          <span aria-hidden="true">*</span>
+          <input id="sharing" name="sharing" type="checkbox">
+        </label>
+        <button>Submit</button>
+    </form>
     `;
 }
 
@@ -83,4 +122,5 @@ function ErrorPage() {
    <h1>Login Failed</h1>`;
 }
 
-module.exports = { Layout, Home, Login, signUpForm, AllPets, ErrorPage };
+module.exports = { Layout, Home, Login, signUpForm, AllPets, ErrorPage, MyPets };
+
