@@ -1,6 +1,6 @@
 const { Layout, Home } = require("../templates.js");
 
-//sign in page / home orute
+//sign in page / home route
 
 function get(req, res) {
   const content = Home();
