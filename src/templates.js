@@ -29,6 +29,7 @@ function Home() {
     `;
 }
 
+
 function signUpForm() {
     return /*html*/ `
     <h1>Create an account</h1>
@@ -44,5 +45,24 @@ function signUpForm() {
     `  
 }
 
-module.exports = { signUpForm, Layout, Home };
+
+
+function Login() {
+  return /* html */ `
+     <h1>Log in Page</h1>
+
+     <form method="POST" action="/log-in">
+        <label for="email">Email <span aria-hidden="true">*</span></label>
+        <input id="email" type="email" required />
+
+        <label for="password"> Password <span aria-hidden="true">*</span></label>
+        <input id="password" type="password" name="password" required />
+
+        <button>Log In</button>
+    </form>
+
+    `;
+}
+
+module.exports = { Layout, Home, Login, signUpForm };
 
