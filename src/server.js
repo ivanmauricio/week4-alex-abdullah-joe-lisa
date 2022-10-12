@@ -26,6 +26,7 @@ server.get("/", home.get);
 server.get("/sign-up", signUp.get);
 server.post("/sign-up", body, signUp.post);
 server.get("/log-in", login.get);
+server.post("/log-in", body, login.post);
 server.get("/all-pets", allPets.get);
 server.get("/my-pets", myPets.get);
 

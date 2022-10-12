@@ -29,9 +29,9 @@ function Home() {
     `;
 }
 
-function signUpForm() {
+function signUpForm(title) {
   return /*html*/ `
-    <h1>Create an account</h1>
+    <h1>${title}</h1>
 <form method="POST">
 <label for="name">Name</label>
 <input id="name" name="name">
@@ -50,7 +50,7 @@ function Login() {
 
      <form method="POST" action="/log-in">
         <label for="email">Email <span aria-hidden="true">*</span></label>
-        <input id="email" type="email" required />
+        <input id="email" name="email" type="email" required />
 
         <label for="password"> Password <span aria-hidden="true">*</span></label>
         <input id="password" type="password" name="password" required />
@@ -61,7 +61,9 @@ function Login() {
     `;
 }
 
+
 function AllPets(petsList, id) {
+
   const pets = petsList.map(
     (pet) => `
     <li>
@@ -78,6 +80,7 @@ function AllPets(petsList, id) {
     </ul>
     `;
 }
+
 
 function Navigation(id) {
   return /*html */ `
@@ -114,4 +117,10 @@ function MyPets(id) {
     `;
 }
 
-module.exports = { Layout, Home, Login, signUpForm, AllPets, MyPets };
+function ErrorPage() {
+  return /* html */ `
+   <h1>Login Failed</h1>`;
+}
+
+module.exports = { Layout, Home, Login, signUpForm, AllPets, ErrorPage, MyPets };
+
