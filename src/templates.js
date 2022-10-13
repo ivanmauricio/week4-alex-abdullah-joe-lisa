@@ -145,10 +145,7 @@ function MyPets(id, errors = {}, values = {}) {
         ${validation(errors.petType)}
 
         <label for="petImg">Pet Image<span aria-hidden="true">*</span></label>
-        <input id="petImg" name="petImg" type="file" value='${
-          values.petImg ? values.petImg : ""
-        }'>
-        ${validation(errors.petImg)}
+        <input id="petImg" name="petImg" type="file">
         
         <label for="sharing">Do you want to share with other users?  
         <span aria-hidden="true">*</span>

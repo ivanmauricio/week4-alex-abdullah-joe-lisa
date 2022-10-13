@@ -23,15 +23,12 @@ function post(req, res) {
   const currentUser = sessionId && sessionId.user_id;
   const title = "Submit a post about your pet";
   const errors = {};
-  const { petName, petType, petImg } = req.body;
+  const { petName, petType, sharing } = req.body;
   if (!petName) {
     errors.petName = "Please enter your pet's name";
   }
   if (!petType) {
     errors.petType = "Please enter your pet's type";
-  }
-  if (!petImg) {
-    errors.petImg = "Please upload your pet's image :)";
   }
   if (Object.keys(errors).length > 0) {
     const body = Layout({
@@ -42,7 +39,9 @@ function post(req, res) {
   }
   const petImage = req.file.path.replace("public", "..");
   console.log(petImage);
-  insertPet(petName, currentUser, petType, petImage);
+  let sharingValue;
+  sharing.checked ? (sharingValue = 0) : (sharingValue = 1);
+  insertPet(petName, currentUser, petType, petImage, sharingValue);
   // sharing = (sharing === "on") ? 1 : 0;
   res.redirect(`/my-pets/${currentUser}`);
 }
