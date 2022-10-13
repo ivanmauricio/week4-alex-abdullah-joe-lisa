@@ -1,5 +1,6 @@
 const { Layout, MyPets, sanitization } = require("../templates");
 const { getSession } = require("../model/session");
+const { insertPet } = require('../model/pets.js');
 
 function get(req, res) {
   const sid = req.signedCookies.sid;
@@ -19,8 +20,11 @@ function post(req, res) {
   const sid = req.signedCookies.sid;
   const sessionId = getSession(sid);
   const currentUser = sessionId && sessionId.user_id;
-  const { petName, petType, petImage, sharing } = req.body;
-  res.redirect(`/my-pets`);
+  const { petName, petType} = req.body;
+  const petImage = req.file.path;
+  insertPet(petName, currentUser, petType, petImage);
+  // sharing = (sharing === "on") ? 1 : 0;
+  res.redirect(`/my-pets/${currentUser}`);
 }
 
 module.exports = { get, post };
