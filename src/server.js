@@ -7,6 +7,7 @@ const cookieParser = require("cookie-parser");
 const home = require("./routes/home.js");
 const signUp = require("./routes/sign-up.js");
 const login = require("./routes/log-in.js");
+const logout = require("./routes/log-out.js");
 const allPets = require("./routes/all-pets.js");
 const myPets = require("./routes/my-pets.js");
 
@@ -29,5 +30,6 @@ server.get("/log-in", login.get);
 server.post("/log-in", body, login.post);
 server.get("/all-pets", allPets.get);
 server.get("/my-pets/:id", myPets.get);
+server.post("/log-out", logout.post);
 
 module.exports = server;

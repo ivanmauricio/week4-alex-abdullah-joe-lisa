@@ -106,19 +106,28 @@ function Navigation(id) {
     `;
 }
 
-function MyPets(id) {
+function MyPets(id, errors = {}, values = {}) {
   return /*html */ `
     ${Navigation(id)}
     <h1>Submit a post about your pet</h1>
     <form method="POST">
         <label for="petName">Pet Name<span aria-hidden="true">*</span></label>
-        <input type="text" id="petName" name="petName" required>
+        <input type="text" id="petName" name="petName" value='${
+          values.petName ? values.petName : ""
+        }'>
+        ${validation(errors.petName)}
 
         <label for="petType">Tell us about your pet<span aria-hidden="true">*</span></label>
-        <input type="text" id="petType" name="petType" required>
+        <input type="text" id="petType" name="petType" value='${
+          values.petType ? values.petType : ""
+        }'>
+        ${validation(errors.petType)}
 
         <label for="petImg">Pet Image<span aria-hidden="true">*</span></label>
-        <input id="petImg" name="petImg" type="file">
+        <input id="petImg" name="petImg" type="file" value='${
+          values.petImg ? values.petImg : ""
+        }'>
+        ${validation(errors.petImg)}
         
         <label for="sharing">Do you want to share with other users?  
         <span aria-hidden="true">*</span>

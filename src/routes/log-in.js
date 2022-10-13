@@ -9,7 +9,12 @@ function get(req, res) {
   const content = Login({}, {});
   const title = "Log in";
   const body = Layout({ title, content });
-
+  const sid = req.signedCookies.sid;
+  const session = getSession(sid);
+  console.log(session);
+  if (session) {
+    res.redirect("/all-pets");
+  }
   res.send(body);
 }
 
@@ -18,8 +23,6 @@ function post(req, res) {
   const user = getUserByEmail(sanitization(email));
   const errors = {};
   const title = "Log in";
-  const existingUser = getUserByEmail(email);
-  if (existingUser) return res.redirect("/all-pets");
   if (!email) {
     errors.email = "Please enter your email";
   }
