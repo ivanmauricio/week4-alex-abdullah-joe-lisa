@@ -1,4 +1,4 @@
-const { signUpForm, Layout } = require("../templates.js");
+const { signUpForm, Layout, sanitization } = require("../templates.js");
 const { createUser, getUserByEmail } = require("../model/user.js");
 const { createSession } = require("../model/session.js");
 const bcrypt = require("bcryptjs");
@@ -18,7 +18,7 @@ function post(req, res) {
   //   if (existingUser) return res.redirect("/log-in");
 
   bcrypt.hash(password, 12).then((hash) => {
-    const userId = createUser(name, email, hash).id;
+    const userId = createUser(sanitization(name), sanitization(email), hash).id;
     const sessionId = createSession(userId);
 
     res.cookie("sid", sessionId, {

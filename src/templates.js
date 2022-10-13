@@ -119,6 +119,10 @@ function ErrorPage() {
    <h1>Login Failed</h1>`;
 }
 
+function sanitization(str) {
+  return str.replace(/</g, "&lt");
+}
+
 module.exports = {
   Layout,
   Home,
@@ -127,4 +131,5 @@ module.exports = {
   AllPets,
   ErrorPage,
   MyPets,
+  sanitization,
 };

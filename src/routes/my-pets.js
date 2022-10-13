@@ -1,4 +1,4 @@
-const { Layout, MyPets } = require("../templates");
+const { Layout, MyPets, sanitization } = require("../templates");
 const { getSession } = require("../model/session");
 
 function get(req, res) {

@@ -1,4 +1,4 @@
-const { Layout, Login, ErrorPage } = require("../templates.js");
+const { Layout, Login, ErrorPage, sanitization } = require("../templates.js");
 const { getUserByEmail } = require("../model/user");
 const { createSession } = require("../model/session");
 const bcrypt = require("bcryptjs");
@@ -15,7 +15,7 @@ function get(req, res) {
 
 function post(req, res) {
   const { email, password } = req.body;
-  const user = getUserByEmail(email);
+  const user = getUserByEmail(sanitization(email));
 
   bcrypt.compare(password, user.hash).then((match) => {
     if (!match) {
