@@ -94,3 +94,35 @@ body h1 {
 .login_container form label {
   margin: 0.5rem;
 }
+
+.allpets_container {
+  display: grid;
+  grid-template-columns: repeat(3, 4rem);
+}
+
+.image_container img {
+  width: 10rem;
+}
+
+.nav_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav_container h1 {
+  margin-left: 1rem;
+}
+
+.nav_items {
+  display: flex;
+  flex-direction: row;
+}
+
+.nav_items li > * {
+  margin-right: 1rem;
+  color: var(--primary-text);
+}
+
+.nav_items ul li button {
+  padding: 1rem;
+}

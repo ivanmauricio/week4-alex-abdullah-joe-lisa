@@ -91,11 +91,17 @@ function Login(errors = {}, values = {}) {
 function AllPets(petsList, id) {
   const pets = petsList.map(
     (pet) => `
-    <li>
-    <h2>${pet.pet_name}</h2>
-    <p>${pet.pet_type}</p>;
-    <img src="${pet.image_path}" alt="${pet.pet_type}" />
-    </li>`
+   <div class="allpets_container">
+      <li>
+      <h2>${pet.pet_name}</h2>
+      <p>${pet.pet_type}</p>;
+        <div class="image_container">
+         <img src="${pet.image_path}" alt="${pet.pet_type}" />
+        </div>
+      </li>
+    </div> 
+    
+    `
   );
   return /*html */ `
     ${Navigation(id)}
@@ -109,9 +115,9 @@ function AllPets(petsList, id) {
 function Navigation(id) {
   return /*html */ `
     <header>
-        <nav> 
-            <div>Petsagram</div> 
-            <ul>
+        <nav class ="nav_container"> 
+            <h1>Petsagram</h1> 
+            <ul class ="nav_items">
                 <li><a href="/all-pets">All Pets</a></li>
                 <li><a href="/my-pets/${id}">My Pets</a></li>
                 <li><form method="POST" action="/log-out"><button>Log Out</button></form></li>
