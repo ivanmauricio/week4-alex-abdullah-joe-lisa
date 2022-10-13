@@ -20,7 +20,8 @@ function post(req, res) {
   const sid = req.signedCookies.sid;
   const sessionId = getSession(sid);
   const currentUser = sessionId && sessionId.user_id;
-  const { petName, petType, petImage } = req.body;
+  const { petName, petType} = req.body;
+  const petImage = req.file.path;
   insertPet(petName, currentUser, petType, petImage);
   // sharing = (sharing === "on") ? 1 : 0;
   res.redirect(`/my-pets/${currentUser}`);
