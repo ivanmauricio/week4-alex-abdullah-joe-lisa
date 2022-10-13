@@ -36,13 +36,17 @@ function signUpForm(title) {
   return /*html*/ `
     <h1>${title}</h1>
 <form method="POST">
-<label for="name">Name</label>
-<input id="name" name="name">
-<label for="email">Email</label>
-<input type="email" id="email" name="email">
-<label for="password">Password</label>
-<input type="password" id="password" name="password">
-<button>Sign up</button>
+
+    <label for="name">Name <span aria-hidden="true">*</span></label>
+    <input id="name" name="name" required>
+
+    <label for="email">Email <span aria-hidden="true">*</span></label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="password">Password <span aria-hidden="true">*</span></label>
+    <input type="password" id="password" name="password" required>
+
+    <button>Sign up</button>
 </form>
     `;
 }
@@ -72,7 +76,6 @@ function AllPets(petsList, id) {
     <img src="${pet.image_path}" alt="${pet.pet_type}" />
     </li>`
   );
-  console.log(pets, petsList);
   return /*html */ `
     ${Navigation(id)}
     <h1>All Pets</h1>
@@ -103,23 +106,45 @@ function MyPets(id) {
     <h1>Submit a post about your pet</h1>
     <form method="POST" enctype="multipart/form-data">
         <label for="petName">Pet Name<span aria-hidden="true">*</span></label>
-        <input id="petName" name="petName">
+        <input type="text" id="petName" name="petName" required>
+
         <label for="petType">Tell us about your pet<span aria-hidden="true">*</span></label>
-        <input id="petType" name="petType">
+        <input type="text" id="petType" name="petType" required>
+
         <label for="petImg">Pet Image<span aria-hidden="true">*</span></label>
         <input id="petImg" name="petImg" type="file">
+        
         <label for="sharing">Do you want to share with other users?  
-          <span aria-hidden="true">*</span>
-          <input id="sharing" name="sharing" type="checkbox">
+        <span aria-hidden="true">*</span>
         </label>
+        <input id="sharing" name="sharing" type="checkbox">
+        
         <button>Submit</button>
     </form>
     `;
 }
 
+function ExistingUser() {
+  return /*html */ `
+    <h1>This email already exists on our database</h1>
+    <p>Please either sign up or try to log in</p>
+    <a href="/log-in">Log in</a>
+    or
+    <a href="/sign-up">Sign up</a>
+  `;
+}
+
 function ErrorPage() {
   return /* html */ `
-   <h1>Login Failed</h1>`;
+   <h1>Login Failed</h1>
+   <p>Something went wrong. Please enter the correct email or password.</p>
+   <a href="/log-in">Log in</a>
+   or
+   <a href="/sign-up"> Sign up</a>`;
+}
+
+function sanitization(str) {
+  return str.replace(/</g, "&lt");
 }
 
 module.exports = {
@@ -130,4 +155,6 @@ module.exports = {
   AllPets,
   ErrorPage,
   MyPets,
+  sanitization,
+  ExistingUser,
 };
