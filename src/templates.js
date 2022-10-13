@@ -38,7 +38,7 @@ function Home() {
     `;
 }
 
-function signUpForm(title) {
+function signUpForm(title, errors = {}, values = {}) {
   return /*html*/ `
  <div class="form_container" >  
 
@@ -46,13 +46,18 @@ function signUpForm(title) {
 <form  method="POST">
 
     <label for="name">Name <span aria-hidden="true">*</span></label>
-    <input id="name" name="name" required>
+    <input id="name" name="name"  value='${values.name ? values.name : ""}'>
+    ${validation(errors.name)}
 
     <label for="email">Email <span aria-hidden="true">*</span></label>
-    <input type="email" id="email" name="email" required>
+    <input type="email" id="email" name="email"  value='${
+      values.email ? values.email : ""
+    }'>
+    ${validation(errors.email)}
 
     <label for="password">Password <span aria-hidden="true">*</span></label>
-    <input type="password" id="password" name="password" required>
+    <input type="password" id="password" name="password">
+    ${validation(errors.password)}
 
     <button>Sign up</button>
 </form>
@@ -60,7 +65,7 @@ function signUpForm(title) {
     `;
 }
 
-function Login() {
+function Login(errors = {}, values = {}) {
   return /* html */ `
 
   <div class="login_container"> 
@@ -68,10 +73,14 @@ function Login() {
 
      <form method="POST" action="/log-in">
         <label for="email">Email <span aria-hidden="true">*</span></label>
-        <input id="email" name="email" type="email" required />
+        <input id="email" name="email" type="email" value="${
+          values.email ? values.email : ""
+        }" />
+        ${validation(errors.email)}
 
         <label for="password"> Password <span aria-hidden="true">*</span></label>
-        <input id="password" type="password" name="password" required />
+        <input id="password" type="password" name="password" />
+        ${validation(errors.password)}
 
         <button>Log In</button>
     </form>
@@ -111,19 +120,28 @@ function Navigation(id) {
     `;
 }
 
-function MyPets(id) {
+function MyPets(id, errors = {}, values = {}) {
   return /*html */ `
     ${Navigation(id)}
     <h1>Submit a post about your pet</h1>
     <form method="POST" enctype="multipart/form-data">
         <label for="petName">Pet Name<span aria-hidden="true">*</span></label>
-        <input type="text" id="petName" name="petName" required>
+        <input type="text" id="petName" name="petName" value='${
+          values.petName ? values.petName : ""
+        }'>
+        ${validation(errors.petName)}
 
         <label for="petType">Tell us about your pet<span aria-hidden="true">*</span></label>
-        <input type="text" id="petType" name="petType" required>
+        <input type="text" id="petType" name="petType" value='${
+          values.petType ? values.petType : ""
+        }'>
+        ${validation(errors.petType)}
 
         <label for="petImg">Pet Image<span aria-hidden="true">*</span></label>
-        <input id="petImg" name="petImg" type="file">
+        <input id="petImg" name="petImg" type="file" value='${
+          values.petImg ? values.petImg : ""
+        }'>
+        ${validation(errors.petImg)}
         
         <label for="sharing">Do you want to share with other users?  
         <span aria-hidden="true">*</span>
@@ -156,6 +174,14 @@ function ErrorPage() {
 
 function sanitization(str) {
   return str.replace(/</g, "&lt");
+}
+
+function validation(message) {
+  if (message) {
+    return `<span style="color: red">${message}</span>`;
+  } else {
+    return "";
+  }
 }
 
 module.exports = {
