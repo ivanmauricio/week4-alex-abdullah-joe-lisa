@@ -1,3 +1,6 @@
+const multer = require("multer");
+const upload = multer({ dest: "./public/uploads" });
+
 //Basic layout function
 
 function Layout({ title, content }) {
@@ -7,6 +10,7 @@ function Layout({ title, content }) {
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel ="stylesheet" href ="../styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${title}</title>
 </head>
@@ -22,17 +26,24 @@ function Layout({ title, content }) {
 
 function Home() {
   return /*html */ `
+  <div class = "home_container">
     <h1>Petsagram</h1>
+
+   <div class="button_container">
     <a href="/sign-up">Sign Up</a>
-    or 
     <a href="/log-in">Log In</a>
+    </div>
+
+  </div>
     `;
 }
 
 function signUpForm(title, errors = {}, values = {}) {
   return /*html*/ `
-    <h1>${title}</h1>
-<form method="POST">
+ <div class="form_container" >  
+
+  <h1>${title}</h1>
+<form  method="POST">
 
     <label for="name">Name <span aria-hidden="true">*</span></label>
     <input id="name" name="name"  value='${values.name ? values.name : ""}'>
@@ -50,11 +61,14 @@ function signUpForm(title, errors = {}, values = {}) {
 
     <button>Sign up</button>
 </form>
+</div>
     `;
 }
 
 function Login(errors = {}, values = {}) {
   return /* html */ `
+
+  <div class="login_container"> 
      <h1>Log in Page</h1>
 
      <form method="POST" action="/log-in">
@@ -70,7 +84,7 @@ function Login(errors = {}, values = {}) {
 
         <button>Log In</button>
     </form>
-
+  </div>  
     `;
 }
 
@@ -110,7 +124,7 @@ function MyPets(id, errors = {}, values = {}) {
   return /*html */ `
     ${Navigation(id)}
     <h1>Submit a post about your pet</h1>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <label for="petName">Pet Name<span aria-hidden="true">*</span></label>
         <input type="text" id="petName" name="petName" value='${
           values.petName ? values.petName : ""
