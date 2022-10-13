@@ -8,9 +8,9 @@ INSERT INTO users VALUES
 ON CONFLICT DO NOTHING;
 
 INSERT INTO pets VALUES
-  (1, 'Milo', 2, 'dog', '/images/dog.jpg', 1),
-  (2, 'Cupcake', 4, 'dolphin', '/images/cat.jpg', 1),
-  (3, 'Bao', 1, 'cat', '/images/cat.jpg', 0),
+  (1, 'Milo', 2, 'dog', '../uploads/dog', 1),
+  (2, 'Cupcake', 4, 'dolphin', '../uploads/dolphin', 1),
+  (3, 'Bao', 1, 'cat', '../uploads/cat', 0),
   (4, 'Amber', 4, 'eagle', '/images/cat.jpg', 0),
   (5, 'Mittens', 4, 'tiger', '/images/tiger.jpg', 0),
   (6, 'Dumpling', 1, 'snake', '/images/snake.jpg', 0)
