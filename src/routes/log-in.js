@@ -1,6 +1,6 @@
 const { Layout, Login, ErrorPage, sanitization } = require("../templates.js");
 const { getUserByEmail } = require("../model/user");
-const { createSession } = require("../model/session");
+const { createSession, getSession } = require("../model/session");
 const bcrypt = require("bcryptjs");
 
 //login route
@@ -17,6 +17,8 @@ function post(req, res) {
   const { email, password } = req.body;
   const user = getUserByEmail(sanitization(email));
 
+  const existingUser = getUserByEmail(email);
+  if (existingUser) return res.redirect("/all-pets");
   bcrypt.compare(password, user.hash).then((match) => {
     if (!match) {
       return res.status(400).send(ErrorPage());
