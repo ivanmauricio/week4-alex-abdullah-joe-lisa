@@ -23,6 +23,13 @@ Run ```npm run dev (npm run devWindow for Windows)``` to start the server.
 
 This uses the nodemon library to auto-restart the server when you save changes.
 
+## User Stories
+- [ ] As a user I want to post about my cute pet.
+- [ ] As a user I want to comeback to your site and see what I posted is still there.
+- [ ] As a user I want to Sign up.
+- [ ] As a user I want to log in and log out.
+- [ ] As a user I want to be able to add my posts either to my page or to the public page 
+
 ## Acceptance Criteria
 - [ ] Express server
 - [ ] Well-organised modular codebase
