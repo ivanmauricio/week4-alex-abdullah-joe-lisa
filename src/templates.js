@@ -29,35 +29,44 @@ function Home() {
     `;
 }
 
-function signUpForm(title) {
+function signUpForm(title, errors = {}, values = {}) {
   return /*html*/ `
     <h1>${title}</h1>
 <form method="POST">
 
     <label for="name">Name <span aria-hidden="true">*</span></label>
-    <input id="name" name="name" required>
+    <input id="name" name="name"  value='${values.name ? values.name : ""}'>
+    ${validation(errors.name)}
 
     <label for="email">Email <span aria-hidden="true">*</span></label>
-    <input type="email" id="email" name="email" required>
+    <input type="email" id="email" name="email"  value='${
+      values.email ? values.email : ""
+    }'>
+    ${validation(errors.email)}
 
     <label for="password">Password <span aria-hidden="true">*</span></label>
-    <input type="password" id="password" name="password" required>
+    <input type="password" id="password" name="password">
+    ${validation(errors.password)}
 
     <button>Sign up</button>
 </form>
     `;
 }
 
-function Login() {
+function Login(errors = {}, values = {}) {
   return /* html */ `
      <h1>Log in Page</h1>
 
      <form method="POST" action="/log-in">
         <label for="email">Email <span aria-hidden="true">*</span></label>
-        <input id="email" name="email" type="email" required />
+        <input id="email" name="email" type="email" value="${
+          values.email ? values.email : ""
+        }" />
+        ${validation(errors.email)}
 
         <label for="password"> Password <span aria-hidden="true">*</span></label>
-        <input id="password" type="password" name="password" required />
+        <input id="password" type="password" name="password" />
+        ${validation(errors.password)}
 
         <button>Log In</button>
     </form>
@@ -142,6 +151,14 @@ function ErrorPage() {
 
 function sanitization(str) {
   return str.replace(/</g, "&lt");
+}
+
+function validation(message) {
+  if (message) {
+    return `<span style="color: red">${message}</span>`;
+  } else {
+    return "";
+  }
 }
 
 module.exports = {
