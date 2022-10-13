@@ -22,3 +22,14 @@ Run ```npm run seed (npm run seedWindow for Windows)``` to seed the local databa
 Run ```npm run dev (npm run devWindow for Windows)``` to start the server.
 
 This uses the nodemon library to auto-restart the server when you save changes.
+
+## Acceptance Criteria
+- [ ] Express server
+- [ ] Well-organised modular codebase
+- [ ] SQLite database
+- [ ] Hosted on Heroku
+- [ ] One of the spike topics
+- [ ] Validate user-submitted data on the server
+- [ ] Handle errors and inform the user
+- [ ] Styled appropriately
+
