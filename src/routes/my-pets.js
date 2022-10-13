@@ -20,7 +20,8 @@ function post(req, res) {
   const sessionId = getSession(sid);
   const currentUser = sessionId && sessionId.user_id;
   const { petName, petType, petImage, sharing } = req.body;
-  res.redirect(`/my-pets`);
+  console.log(req.file);
+  res.redirect(`/my-pets/${currentUser}`);
 }
 
 module.exports = { get, post };

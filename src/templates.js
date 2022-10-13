@@ -1,3 +1,6 @@
+const multer  = require('multer')
+const upload = multer({ dest: './public/uploads' })
+
 //Basic layout function
 
 function Layout({ title, content }) {
@@ -98,7 +101,7 @@ function MyPets(id) {
   return /*html */ `
     ${Navigation(id)}
     <h1>Submit a post about your pet</h1>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">
         <label for="petName">Pet Name<span aria-hidden="true">*</span></label>
         <input id="petName" name="petName">
         <label for="petType">Tell us about your pet<span aria-hidden="true">*</span></label>

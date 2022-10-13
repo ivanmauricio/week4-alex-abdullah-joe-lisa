@@ -1,5 +1,8 @@
 // import modules
 const express = require("express");
+const multer  = require('multer')
+const upload = multer({ dest: './public/uploads' })
+
 
 const cookieParser = require("cookie-parser");
 
@@ -29,5 +32,7 @@ server.get("/log-in", login.get);
 server.post("/log-in", body, login.post);
 server.get("/all-pets", allPets.get);
 server.get("/my-pets/:id", myPets.get);
+
+server.post('/my-pets/:id', body, upload.single('petImg'), myPets.post);
 
 module.exports = server;
