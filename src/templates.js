@@ -61,9 +61,7 @@ function Login() {
     `;
 }
 
-
 function AllPets(petsList, id) {
-
   const pets = petsList.map(
     (pet) => `
     <li>
@@ -80,7 +78,6 @@ function AllPets(petsList, id) {
     </ul>
     `;
 }
-
 
 function Navigation(id) {
   return /*html */ `
@@ -122,5 +119,12 @@ function ErrorPage() {
    <h1>Login Failed</h1>`;
 }
 
-module.exports = { Layout, Home, Login, signUpForm, AllPets, ErrorPage, MyPets };
-
+module.exports = {
+  Layout,
+  Home,
+  Login,
+  signUpForm,
+  AllPets,
+  ErrorPage,
+  MyPets,
+};

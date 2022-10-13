@@ -28,6 +28,6 @@ server.post("/sign-up", body, signUp.post);
 server.get("/log-in", login.get);
 server.post("/log-in", body, login.post);
 server.get("/all-pets", allPets.get);
-server.get("/my-pets", myPets.get);
+server.get("/my-pets/:id", myPets.get);
 
 module.exports = server;
