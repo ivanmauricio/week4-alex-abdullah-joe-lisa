@@ -93,6 +93,7 @@ function AllPets(petsList, id) {
     (pet) => `
     <li>
     <h2>${pet.pet_name}</h2>
+    <p>${pet.pet_type}</p>;
     <img src="${pet.image_path}" alt="${pet.pet_type}" />
     </li>`
   );

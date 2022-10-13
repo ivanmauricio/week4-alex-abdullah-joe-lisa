@@ -21,7 +21,8 @@ function post(req, res) {
   const sessionId = getSession(sid);
   const currentUser = sessionId && sessionId.user_id;
   const { petName, petType} = req.body;
-  const petImage = req.file.path;
+  const petImage = req.file.path.replace("public", "..");
+  console.log(petImage);
   insertPet(petName, currentUser, petType, petImage);
   // sharing = (sharing === "on") ? 1 : 0;
   res.redirect(`/my-pets/${currentUser}`);
