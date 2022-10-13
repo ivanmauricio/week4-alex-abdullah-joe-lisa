@@ -1,5 +1,5 @@
-const multer  = require('multer')
-const upload = multer({ dest: './public/uploads' })
+const multer = require("multer");
+const upload = multer({ dest: "./public/uploads" });
 
 //Basic layout function
 
@@ -62,6 +62,8 @@ function signUpForm(title) {
 
 function Login() {
   return /* html */ `
+
+  <div class="login_container"> 
      <h1>Log in Page</h1>
 
      <form method="POST" action="/log-in">
@@ -73,7 +75,7 @@ function Login() {
 
         <button>Log In</button>
     </form>
-
+  </div>  
     `;
 }
 
