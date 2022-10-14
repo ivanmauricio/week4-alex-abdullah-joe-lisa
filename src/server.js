@@ -43,14 +43,14 @@ function sessions(req, res, next) {
   if (session) {
     const expiry = new Date(session.expires_at);
     const today = new Date();
+    if (expiry < today) {
+      removeSession(sid);
+      res.clearCookie("sid");
+    } else {
+      req.session = session;
+    }
+    next();
   }
-  if (expiry < today) {
-    removeSession(sid);
-    res.clearCookie("sid");
-  } else {
-    req.session = session;
-  }
-  next();
 }
 
 module.exports = server;
