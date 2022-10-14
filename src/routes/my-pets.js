@@ -1,6 +1,7 @@
 const { Layout, MyPets, sanitization } = require("../templates");
 const { getSession } = require("../model/session");
 const { insertPet } = require("../model/pets.js");
+const { getUsersPets } = require("../model/pets.js");
 
 function get(req, res) {
   const sid = req.signedCookies.sid;
@@ -10,8 +11,9 @@ function get(req, res) {
   if (idFromURL != currentUser) {
     res.send("You're not allowed to access this page");
   }
-
-  const content = MyPets(currentUser);
+  const petsList = getUsersPets(currentUser); // Query from table
+  console.log(petsList)
+  const content = MyPets(currentUser, petsList);
   const title = "Submit a post about your pet";
   const body = Layout({ title, content });
   res.send(body);
@@ -24,21 +26,16 @@ function post(req, res) {
   const title = "Submit a post about your pet";
   const errors = {};
   const { petName, petType, sharing } = req.body;
-  const petImageExists = req.file;
   if (!petName) {
     errors.petName = "Please enter your pet's name";
   }
   if (!petType) {
     errors.petType = "Please enter your pet's type";
   }
-
-  if (!petImageExists) {
-    errors.petImg = "Please upload your pet's image";
-  }
   if (Object.keys(errors).length > 0) {
     const body = Layout({
       title,
-      content: MyPets(currentUser, errors, req.body),
+      content: MyPets(currentUser, petsList, errors, req.body),
     });
     return res.send(body);
   }
