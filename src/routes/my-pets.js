@@ -44,7 +44,12 @@ function post(req, res) {
   }
   const petImage = req.file.path.replace("public", "..");
   let sharingValue;
-  sharing.checked ? (sharingValue = 0) : (sharingValue = 1);
+  if (!sharing) {
+    sharingValue = 1;
+  } else {
+    sharingValue = 0;
+  }
+
   insertPet(petName, currentUser, petType, petImage, sharingValue);
   // sharing = (sharing === "on") ? 1 : 0;
   res.redirect(`/my-pets/${currentUser}`);

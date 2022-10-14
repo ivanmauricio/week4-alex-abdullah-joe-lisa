@@ -23,10 +23,13 @@ function post(req, res) {
   const user = getUserByEmail(sanitization(email));
   const errors = {};
   const title = "Log in";
-  if (!user) res.status(400).send(ErrorPage());
+  if (!user) {
+    return res.status(400).send(Layout({ title, content: ErrorPage() }));
+  }
   if (!email) {
     errors.email = "Please enter your email";
   }
+  console.log(user);
   if (!password) {
     errors.password = "Please enter your password";
   }
