@@ -73,6 +73,20 @@ body h1 {
   border-radius: 5px;
 }
 
+.img_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+.home_container .img_container img {
+  width: 7rem;
+  height: auto;
+  border-radius: 10px;
+}
+
 .form_container form,
 .login_container form {
   display: flex;
