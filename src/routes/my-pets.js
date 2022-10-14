@@ -12,7 +12,6 @@ function get(req, res) {
     res.send("You're not allowed to access this page");
   }
   const petsList = getUsersPets(currentUser); // Query from table
-  console.log(petsList)
   const content = MyPets(currentUser, petsList);
   const title = "Submit a post about your pet";
   const body = Layout({ title, content });
