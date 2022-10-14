@@ -125,7 +125,6 @@ function Navigation(id) {
 }
 
 function MyPets(id, petsList, errors = {}, values = {}) {
-  console.log(petsList)
   const pets = petsList.map(
     (pet) => `
    <div class="allpets_container">
