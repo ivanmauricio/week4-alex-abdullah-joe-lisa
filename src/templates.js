@@ -95,38 +95,41 @@ function Login(errors = {}, values = {}) {
 function AllPets(petsList, id) {
   const pets = petsList.map(
     (pet) => `
-   <div class="allpets_container">
-      <li>
-      <h2>${pet.pet_name}</h2>
-      <p>${pet.pet_type}</p>
-        <div class="image_container">
-         <img src="${pet.image_path}" alt="${pet.pet_type}" />
-        </div>
+      <li class="pet-post">
+        <h2>${pet.pet_name}</h2>
+        <p>${pet.pet_type}</p>
+          <div class="image_container">
+          <img src="${pet.image_path}" alt="${pet.pet_type}" />
+          </div>
       </li>
-    </div> 
+    
     
     `
   );
   return /*html */ `
     ${Navigation(id)}
     <h1>All Pets</h1>
-    <ul>
+    <div class="container">
+    <ul class="pet-list">
         ${pets.join("")}
     </ul>
+    </div>
     `;
 }
 
 function Navigation(id) {
   return /*html */ `
     <header>
+      <div class="container">
         <nav class ="nav_container"> 
             <h1>Petsagram</h1> 
             <ul class ="nav_items">
                 <li><a href="/all-pets">All Pets</a></li>
                 <li><a href="/my-pets/${id}">My Pets</a></li>
-                <li><form method="POST" action="/log-out"><button>Log Out</button></form></li>
+                <li><form method="POST" action="/log-out"><button class="form_button">Log Out</button></form></li>
             </ul>
         </nav>
+      </div>
     </header>
     `;
 }
@@ -149,7 +152,8 @@ function MyPets(id, petsList, errors = {}, values = {}) {
   return /*html */ `
     ${Navigation(id)}
     <h1>Submit a post about your pet</h1>
-    <form method="POST" enctype="multipart/form-data">
+    <div class="container">
+    <form method="POST" class="pets-form" enctype="multipart/form-data">
         <label for="petName">Pet Name<span aria-hidden="true">*</span></label>
         <input type="text" id="petName" name="petName" value='${
           values.petName ? values.petName : ""
@@ -168,11 +172,12 @@ function MyPets(id, petsList, errors = {}, values = {}) {
         
         <label for="sharing">Do you want to share with other users?  
         <span aria-hidden="true">*</span>
-        </label>
         <input id="sharing" name="sharing" type="checkbox">
+        </label>
         
         <button>Submit</button>
     </form>
+    </div>
     <ul>
     ${pets.join("")}
 </ul>
@@ -182,21 +187,29 @@ function MyPets(id, petsList, errors = {}, values = {}) {
 
 function ExistingUser() {
   return /*html */ `
+    <div class="home_container">
     <h1>This email already exists on our database</h1>
     <p>Please either sign up or try to log in</p>
+    <div class="button_container">
     <a href="/log-in">Log in</a>
     or
     <a href="/sign-up">Sign up</a>
+    </div>
+    </div>
   `;
 }
 
 function ErrorPage() {
   return /* html */ `
+  <div class="home_container">
    <h1>Login Failed</h1>
    <p>Something went wrong. Please enter the correct email or password.</p>
+   <div class="button_container">
    <a href="/log-in">Log in</a>
-   or
-   <a href="/sign-up"> Sign up</a>`;
+   <span>or</span>
+   <a href="/sign-up"> Sign up</a>
+   </div>
+   </div>`;
 }
 
 function sanitization(str) {
