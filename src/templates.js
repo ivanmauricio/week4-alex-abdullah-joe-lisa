@@ -27,9 +27,16 @@ function Home() {
     <h1>Petsagram</h1>
 
    <div class="button_container">
-    <a href="/sign-up">Sign Up</a>
-    <a href="/log-in">Log In</a>
+     <a href="/sign-up">Sign Up</a>
+     <a href="/log-in">Log In</a>
     </div>
+
+  <div class ="img_container">
+       <img src="../uploads/dog" alt="">
+       <img src="../uploads/cat" alt="">
+       <img src="../uploads/dolphin" alt="">
+  </div>
+ 
 
   </div>
     `;
