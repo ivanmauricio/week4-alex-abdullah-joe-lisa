@@ -91,7 +91,7 @@ function AllPets(petsList, id) {
    <div class="allpets_container">
       <li>
       <h2>${pet.pet_name}</h2>
-      <p>${pet.pet_type}</p>;
+      <p>${pet.pet_type}</p>
         <div class="image_container">
          <img src="${pet.image_path}" alt="${pet.pet_type}" />
         </div>
