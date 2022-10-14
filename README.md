@@ -40,3 +40,15 @@ This uses the nodemon library to auto-restart the server when you save changes.
 - [ ] Handle errors and inform the user
 - [ ] Styled appropriately
 
+
+## Communication
+Throughout our project we used pair-programming method to write the code and rosolve issues. We met in-person, as well as had online meetings to discuss and work together. We would gather for 5-10 minutes for a quick huddle to discuss the progress so far, and if we faced any issues.
+
+### Tools Used
+Discord
+VS Code Live Share extension
+Github Project Board
+Software Methodologies
+During our planning stage, we identified there were functions and components that would be reused in the project. As a result, we decided to include modularization and attempted to follow the DRY principle.
+
+Examples of that can be found in server.js, helpers.js and user-page.js
