@@ -90,7 +90,7 @@ function AllPets(petsList, id) {
     (pet) => `
       <li class="pet-post">
         <h2>${pet.pet_name}</h2>
-        <p>${pet.pet_type}</p>;
+        <p>${pet.pet_type}</p>
           <div class="image_container">
           <img src="${pet.image_path}" alt="${pet.pet_type}" />
           </div>
@@ -127,7 +127,21 @@ function Navigation(id) {
     `;
 }
 
-function MyPets(id, errors = {}, values = {}) {
+function MyPets(id, petsList, errors = {}, values = {}) {
+  const pets = petsList.map(
+    (pet) => `
+   <div class="allpets_container">
+      <li>
+      <h2>${pet.pet_name}</h2>
+      <p>${pet.pet_type}</p>
+        <div class="image_container">
+         <img src="${pet.image_path}" alt="${pet.pet_type}" />
+        </div>
+      </li>
+    </div> 
+    
+    `
+  );
   return /*html */ `
     ${Navigation(id)}
     <h1>Submit a post about your pet</h1>
@@ -157,7 +171,11 @@ function MyPets(id, errors = {}, values = {}) {
         <button>Submit</button>
     </form>
     </div>
+    <ul>
+    ${pets.join("")}
+</ul>
     `;
+    
 }
 
 function ExistingUser() {
