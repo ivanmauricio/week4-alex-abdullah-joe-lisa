@@ -40,7 +40,6 @@ function post(req, res) {
   bcrypt.hash(password, 12).then((hash) => {
     const userId = createUser(sanitization(name), sanitization(email), hash).id;
     const sessionId = createSession(userId);
-
     res.cookie("sid", sessionId, {
       signed: true,
       maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
