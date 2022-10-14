@@ -38,7 +38,7 @@ function post(req, res) {
     return res.send(body);
   }
   const petImage = req.file.path.replace("public", "..");
-  console.log(petImage);
+
   let sharingValue;
   sharing.checked ? (sharingValue = 0) : (sharingValue = 1);
   insertPet(petName, currentUser, petType, petImage, sharingValue);

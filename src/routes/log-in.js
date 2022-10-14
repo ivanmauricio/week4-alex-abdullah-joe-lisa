@@ -11,7 +11,7 @@ function get(req, res) {
   const body = Layout({ title, content });
   const sid = req.signedCookies.sid;
   const session = getSession(sid);
-  console.log(session);
+
   if (session) {
     res.redirect("/all-pets");
   }
