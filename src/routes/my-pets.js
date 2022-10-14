@@ -24,11 +24,16 @@ function post(req, res) {
   const title = "Submit a post about your pet";
   const errors = {};
   const { petName, petType, sharing } = req.body;
+  const petImageExists = req.file;
   if (!petName) {
     errors.petName = "Please enter your pet's name";
   }
   if (!petType) {
     errors.petType = "Please enter your pet's type";
+  }
+
+  if (!petImageExists) {
+    errors.petImg = "Please upload your pet's image";
   }
   if (Object.keys(errors).length > 0) {
     const body = Layout({
@@ -38,7 +43,6 @@ function post(req, res) {
     return res.send(body);
   }
   const petImage = req.file.path.replace("public", "..");
-
   let sharingValue;
   sharing.checked ? (sharingValue = 0) : (sharingValue = 1);
   insertPet(petName, currentUser, petType, petImage, sharingValue);
